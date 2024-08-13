@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Decrypt the file using Bob's private key
+openssl rsautl -decrypt -inkey bob_private.pem -in encrypted_file.enc -out decrypted_file.txt
+
+# Verify the signature using Alice's public key
+openssl dgst -sha256 -verify alice_public.pem -signature generated_file.sig decrypted_file.txt
+
+# Display the decrypted content
+cat decrypted_file.txt
